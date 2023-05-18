@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>l</title>
+  </head>
+  <style>
+    /* Estilo para todo o documento */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Estilo para o body */
+    body {
+      font-family: sans-serif;
+      background-color: #f0f0f0;
+      width: 20%;
+      margin: 0 auto;
+    }
+
+    /* Estilo para o título */
+    h1 {
+      text-align: center;
+      margin: 20px 0;
+      font-size: 36px;
+    }
+
+    /* Estilo para o rótulo */
+    label {
+      display: block;
+
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    /* Estilo para a entrada de texto */
+    input[type="text"],
+    input[type="date"] {
+      display: block;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #fff;
+      font-size: 16px;
+      width: 100%;
+    }
+
+    /* Estilo para o botão */
+    input[type="button"] {
+      display: inline-block;
+      margin: 10px 0;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4caf50;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    input[type="button"]:hover {
+      background-color: #3e8e41;
+    }
+
+    /* Estilo para a área de texto */
+    textarea {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #fff;
+      font-size: 16px;
+      width: 100%;
+      height: 150px;
+      resize: none;
+    }
+
+    /* Estilo para mensagens de erro */
+    .error-message {
+      color: red;
+      margin: 5px 0;
+      font-size: 14px;
+    }
+
+    /* Estilo para mensagem de sucesso */
+    .success-message {
+      color: green;
+      margin: 5px 0;
+      font-size: 14px;
+    }
+  </style>
+  <body>
+    <label> CPF DO FUNCIONARIO:</label>
+    <input type="text" maxlength="14" placeholder="___.___.___-__" class="cpfa" id="cpfa" required /><br /><br />
+    <input
+      type="button"
+      id="procurar"
+      value="procurar"
+      onclick="buscarDado()"
+    />
+
+    <label for="senha">Senha:</label><br />
+    <input type="text" id="senha" name="senha" /><br />
+
+    <label for="nome">Nome do Funcionário:</label><br />
+    <input type="text" id="nome" name="nome" /><br />
+
+    <label for="contratacao">Data de Contratação:</label><br />
+    <input type="date" id="contratacao" name="contratacao" /><br />
+
+    <label for="cargo">Cargo:</label><br />
+    <input type="text" id="cargo" name="cargo" /><br />
+
+    <label for="objetivos">Objetivos Alcançados:</label><br />
+    <textarea id="objetivos" name="objetivos"></textarea><br />
+
+    <label for="pontos-fortes">Pontos Fortes:</label><br />
+    <textarea id="pontos-fortes" name="pontos-fortes"></textarea><br />
+
+    <label for="pontos-melhoria">Pontos de Melhoria:</label><br />
+    <textarea id="pontos-melhoria" name="pontos-melhoria"></textarea><br />
+
+    <label for="sugestoes">Sugestões para o Futuro:</label><br />
+    <textarea id="sugestoes" name="sugestoes"></textarea><br />
+
+    <label for="observacoes">Observações Adicionais:</label><br />
+    <textarea id="observacoes" name="observacoes"></textarea><br />
+
+    <input type="button" onclick="atualizarDado()" value="Atualizar" />
+
+    <input type="button" onclick="deletarDados()" value="Deletar" />
+
+    <script src="delete.js"></script>
+    <script src="put.js"></script>
+
+    <script>
+      let cpfInput = document.querySelector('#cpfa');
+
+cpfInput.addEventListener('input', function() {
+  // Pega o valor atual do input
+  let cpf = this.value;
+
+  // Remove todos os caracteres que não sejam números
+  cpf = cpf.replace(/\D/g, '');
+
+  // Adiciona um ponto entre o terceiro e o quarto dígitos
+  cpf = cpf.replace(/^(\d{3})(\d)/, '$1.$2');
+
+  // Adiciona um ponto entre o sexto e o sétimo dígitos
+  cpf = cpf.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
+
+  // Adiciona um hífen depois do nono dígito
+  cpf = cpf.replace(/\.(\d{3})(\d)/, '.$1-$2');
+
+  // Define o valor formatado no input
+  this.value = cpf;
+});
+
+      
+      function buscarDado() {
+        const cpfa = document.getElementById("cpfa").value;
+        fetch(`http://localhost:3000/pessoas/`, {
+          method: "GET",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            const pessoaEncontrada = data.find(
+              (pessoa) => pessoa.cpfa === cpfa
+            );
+            if (pessoaEncontrada) {
+              document.getElementById("nome").value = pessoaEncontrada.nome;
+              document.getElementById("senha").value = pessoaEncontrada.senha;
+              document.getElementById("contratacao").value =
+                pessoaEncontrada.contratacao;
+              document.getElementById("cargo").value = pessoaEncontrada.cargo;
+              document.getElementById("objetivos").innerHTML =
+                pessoaEncontrada.objetivos;
+              document.getElementById("pontos-fortes").innerHTML =
+                pessoaEncontrada.pontosFortes;
+              document.getElementById("pontos-melhoria").innerHTML =
+                pessoaEncontrada.pontosMelhoria;
+              document.getElementById("sugestoes").innerHTML =
+                pessoaEncontrada.sugestoes;
+              document.getElementById("observacoes").innerHTML =
+                pessoaEncontrada.observacoes;
+            } else {
+              alert("pessoa não encontrada");
+            }
+          });
+      }
+    </script>
+  </body>
+</html>

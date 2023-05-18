@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Funcionário</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    /* Estilos gerais */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilos do contêiner principal */
+.container {
+    background-color: #fff;
+    margin: 50px auto;
+    padding: 20px;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos do título */
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Estilos dos campos de formulário */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0062cc;
+}
+#voltar {
+    text-decoration: none;
+    padding: 10px;
+}
+
+</style>
+<body>
+    <div class="container">
+        <h1>Formulário de Funcionário</h1>
+        <form onsubmit="event.preventDefault();">
+            <div class="form-group">
+                <label for="cpf">CPF:</label>
+                <input type="text" readonly id="cpf" name="cpf" required>
+            </div>
+            <div class="form-group">
+                <label for="senha">Senha:</label>
+                <input type="text" id="senha" name="senha" required maxlength="10">
+            </div>
+            <div class="form-group">
+                <label for="nome">Nome do Funcionário:</label>
+                <input type="text" readonly id="nome" name="nome" required>
+            </div>
+            <div class="form-group">
+                <label for="contratacao">Data de Contratação:</label>
+                <input type="date" readonly id="contratacao" name="contratacao" required>
+            </div>
+            <div class="form-group">
+                <label for="cargo">Cargo:</label>
+                <input type="text" readonly id="cargo" name="cargo" required>
+            </div>
+            <div class="form-group">
+                <label for="objetivos">Objetivos Alcançados:</label>
+                <textarea id="objetivos" readonly name="objetivos" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="pontos-fortes">Pontos Fortes:</label>
+                <textarea id="pontos-fortes" readonly name="pontos-fortes" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="pontos-melhoria">Pontos de Melhoria:</label>
+                <textarea id="pontos-melhoria" readonly name="pontos-melhoria" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="sugestoes">Sugestões para o Futuro:</label>
+                <textarea id="sugestoes" readonly name="sugestoes" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="observacoes">Observações Adicionais:</label>
+                <textarea id="observacoes" readonly name="observacoes" required></textarea>
+            </div>
+            <input type="submit" value="Atualizar" onclick="atualizarDados()">
+            <a href="index.html" id="voltar">Voltar</a>
+        </form>
+    </div>
+    <script src="get.js"></script>
+    <script src="put.js"></script>
+</body>
+</html>

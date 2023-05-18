@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+</head>
+<style>
+    /* Configurações básicas */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    padding: 0;
+    margin: 0;
+  }
+  
+  h1 {
+    text-align: center;
+    margin: 30px 0;
+  }
+  
+  form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="date"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+  }
+  
+  input[type="button"] {
+    display: block;
+    width: 100%;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+h5 {
+    margin-top: 30px;
+    font-size: 16px;
+}
+
+a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+    color: #3e8e41;
+}
+  
+  input[type="button"]:hover {
+    background-color: #3e8e41;
+  }
+  
+  /* Estilos adicionais */
+  input[type="text"],
+  input[type="date"],
+  textarea,
+  input[type="button"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+  }
+  
+  input[type="text"]:focus,
+  input[type="date"]:focus,
+  textarea:focus {
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  textarea {
+    height: 150px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    form {
+      padding: 20px;
+    }
+  }
+  
+</style>
+<body>
+    <h1>Cadastro</h1>
+    <form >
+        <form>
+            <label for="CPF">CPF:</label><br>
+            <input type="text" id="cpf" class="cpf" name="cpf" maxlength="14" placeholder="___.___.___-__"><br>
+            
+            <label for="senha">Senha:</label><br>
+            <input type="text" id="senha" name="senha" maxlength="10" placeholder="**********"><br>
+
+            <label for="nome">Nome do Funcionário:</label><br>
+            <input type="text" id="nome" name="nome"><br>
+          
+            <label for="contratacao">Data de Contratação:</label><br>
+            <input type="date" id="contratacao" name="contratacao"><br>
+          
+            <label for="cargo">Cargo:</label><br>
+            <input type="text" id="cargo" name="cargo"><br>
+          
+            <label for="objetivos">Objetivos Alcançados:</label><br>
+            <textarea id="objetivos" name="objetivos"></textarea><br>
+          
+            <label for="pontos-fortes">Pontos Fortes:</label><br>
+            <textarea id="pontos-fortes" name="pontos-fortes"></textarea><br>
+          
+            <label for="pontos-melhoria">Pontos de Melhoria:</label><br>
+            <textarea id="pontos-melhoria" name="pontos-melhoria"></textarea><br>
+          
+            <label for="sugestoes">Sugestões para o Futuro:</label><br>
+            <textarea id="sugestoes" name="sugestoes"></textarea><br>
+          
+            <label for="observacoes">Observações Adicionais:</label><br>
+            <textarea id="observacoes" name="observacoes"></textarea><br>
+          
+            <input type="button" onclick="enviarDados()" value="Enviar">
+          </form>
+          <div class="container">
+            <h5>Já tem cadastro? <a href="login.html">Login</a></h5>
+        </div>
+          
+    </form>
+
+    <script src="post.js"></script>
+    <script>
+        let cpfInput = document.querySelector('#cpf');
+
+        cpfInput.addEventListener('input', function() {
+          // Pega o valor atual do input
+          let cpf = this.value;
+        
+          // Remove todos os caracteres que não sejam números
+          cpf = cpf.replace(/\D/g, '');
+        
+          // Adiciona um ponto entre o terceiro e o quarto dígitos
+          cpf = cpf.replace(/^(\d{3})(\d)/, '$1.$2');
+        
+          // Adiciona um ponto entre o sexto e o sétimo dígitos
+          cpf = cpf.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
+        
+          // Adiciona um hífen depois do nono dígito
+          cpf = cpf.replace(/\.(\d{3})(\d)/, '.$1-$2');
+        
+          // Define o valor formatado no input
+          this.value = cpf;
+        });
+    </script>
+</body>
+</html>

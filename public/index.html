@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15%;
+            border-radius: 5px;
+            
+        }
+
+        form {
+            background-color: white;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        input[type="password"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+            
+        }
+
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+
+        h5 {
+            margin-top: 30px;
+            font-size: 16px;
+        }
+
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s ease-in-out;
+        }
+
+        a:hover {
+            color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form onsubmit="event.preventDefault();">
+            <label>CPF</label>
+            <input type="text" id="cpf" class="cpf" name="cpfa" required maxlength="14" placeholder="___.___.___-__">
+            <label >Senha:</label>
+            <input type="password" maxlength="10" id="senha" required placeholder="***********">
+            <input type="submit" onclick="fazerLogin()" value="Entrar">
+        </form>
+    </div>
+
+    <div class="container">
+        <h5>Ainda não é cadastrado? <a href="cadastro.html">Cadastre-se</a></h5>
+    </div>
+
+    <script src="login.js"></script>
+    <script src="get.js"></script>
+    <script>
+        let cpfInput = document.querySelector('#cpf');
+
+cpfInput.addEventListener('input', function() {
+  // Pega o valor atual do input
+  let cpf = this.value;
+
+  // Remove todos os caracteres que não sejam números
+  cpf = cpf.replace(/\D/g, '');
+
+  // Adiciona um ponto entre o terceiro e o quarto dígitos
+  cpf = cpf.replace(/^(\d{3})(\d)/, '$1.$2');
+
+  // Adiciona um ponto entre o sexto e o sétimo dígitos
+  cpf = cpf.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
+
+  // Adiciona um hífen depois do nono dígito
+  cpf = cpf.replace(/\.(\d{3})(\d)/, '.$1-$2');
+
+  // Define o valor formatado no input
+  this.value = cpf;
+});
+    </script>
+</body>
+</html>
