@@ -13,7 +13,7 @@ function enviarDados(){
     const observacoes = document.getElementById("observacoes").value;
 
     //Envia os dados para o servidor utilizando o método fetch ()
-    fetch("pessoas",{
+    fetch(`pessoas`,{
         method: 'POST', //Método HTTP utilizado (POST)
         //Headers é um objeto de requisição HTTP que insere no JSON as informações
         headers:{
