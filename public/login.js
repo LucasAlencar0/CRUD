@@ -2,7 +2,7 @@ function fazerLogin() {
   const cpf = document.getElementById("cpf").value;
   const senha = document.getElementById("senha").value;
 
-  fetch("pessoas")
+  fetch(`pessoas`)
     .then((response) => response.json())
     .then((data) => {
       //Busca as pessoas cujo nome e idade concidem com os valores digitados
@@ -19,7 +19,7 @@ function fazerLogin() {
       // }
     });
 
-  fetch("admins")
+  fetch(`admins`)
     .then((response) => response.json())
     .then((data) => {
       //Busca as pessoas cujo nome e idade concidem com os valores digitados
