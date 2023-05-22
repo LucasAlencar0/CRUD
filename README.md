@@ -62,18 +62,22 @@ Siga as etapas abaixo para configurar e executar o projeto localmente:
 
 6. Abra o navegador e acesse a seguinte URL: `http://localhost:3000`.
 
+7. Para visualizar os dados JSON pelo navegador acrescente /pessoas ou /admins no final do link `http://localhost:3000`.
+
+
+
 ## Contribuição
 
 As contribuições para este projeto são bem-vindas. Sinta-se à vontade para enviar pull requests ou relatar problemas encontrados.
 
 ## Autores
 
-- Lucas Alencar(https://github.com/autor1)
+- Lucas Alencar(https://github.com/LucasAlencar0))
 
 
 ## Licença
 
-Este projeto está licenciado sob a [Licença XYZ](https://github.com/seu-usuario/nome-do-repositorio/blob/main/LICENSE).
+Este projeto está licenciado sob a [Licença XYZ](https://github.com/LucasALencar0/CRUD/blob/main/LICENSE).
 
 ## Link
 https://crud-lucasdamazio09.b4a.run/
