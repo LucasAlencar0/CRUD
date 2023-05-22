@@ -39,13 +39,13 @@ Siga as etapas abaixo para configurar e executar o projeto localmente:
 2. Clone este repositório para o seu ambiente local.
 
    ```
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   git clone https://github.com/LucasAlencar0/CRUD.git
    ```
 
 3. Acesse o diretório do projeto.
 
    ```
-   cd nome-do-repositorio
+   cd CRUD
    ```
 
 4. Instale as dependências do projeto.
