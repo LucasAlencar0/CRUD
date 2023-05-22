@@ -165,7 +165,7 @@ cpfInput.addEventListener('input', function() {
       
       function buscarDado() {
         const cpfa = document.getElementById("cpfa").value;
-        fetch(`http://localhost:3000/pessoas/`, {
+        fetch(`pessoas/`, {
           method: "GET",
         })
           .then((response) => response.json())
